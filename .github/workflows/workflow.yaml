@@ -1,0 +1,39 @@
+name: Build Jenkins attack framework Executable
+on:
+  workflow_dispatch: # This allows manual triggering
+jobs:
+  build:
+    runs-on: debian-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          
+      - name: Install jenkins attack framework and dependencies
+        run: |
+          chmod +x jaf
+          ./jaf --install          # Install adidnsdump and its dependencies
+          pip install -e .
+          # Install PyInstaller
+          pip install pyinstaller
+          
+      - name: Build executable
+        run: |
+          # Create a simple entry point script
+          echo 'import sys; from jaf import main; sys.exit(main())' > jaf_launcher.py
+          # Use this entry script for PyInstaller
+          pyinstaller --onefile --name adidnsdump_debian_amd64.exe jaf_launcher.py
+          
+      - name: Create zip file
+        run: |
+          Compress-Archive -Path .\\dist\\adidnsdump_windows_amd64.exe -DestinationPath adidnsdump_windows.zip
+          
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: adidnsdump-windows
+          path: adidnsdump_windows.zip 
