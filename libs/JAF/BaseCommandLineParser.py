@@ -1,4 +1,5 @@
 import sys
+import os
 from urllib.parse import urlparse
 
 from .CustomArgumentParser import ArgumentParser, Formatter
@@ -43,7 +44,7 @@ class BaseCommandLineParser:
 
     def _create_contextual_parser(self, cmd, description):
         """Creates context-specific argparse parser after subcommand is choosen"""
-
+        print("[DEBUG] registering cmd {}".format(cmd))
         self.parser = ArgumentParser(description=self._description, formatter_class=Formatter)
         self.parser.add_argument(dest="subcommand", metavar=cmd, help=description, action="store")
 

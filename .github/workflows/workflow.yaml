@@ -24,8 +24,8 @@ jobs:
         run: |
           # Create a simple entry point script
           # Use this entry script for PyInstaller
-          pyinstaller --onefile --name jaf_debian_amd64.exe jaf_launcher.py
-                    
+          pyinstaller --onefile --additional-hooks-dir=. --name jaf_debian_amd64.exe jaf_launcher.py
+                   
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
