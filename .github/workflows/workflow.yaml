@@ -23,7 +23,6 @@ jobs:
       - name: Build executable
         run: |
           # Create a simple entry point script
-          echo 'import sys; from jaf import main; sys.exit(main())' > jaf_launcher.py
           # Use this entry script for PyInstaller
           pyinstaller --onefile --name jaf_debian_amd64.exe jaf_launcher.py
                     
