@@ -16,7 +16,7 @@ jobs:
       - name: Install jenkins attack framework and dependencies
         run: |
           chmod +x jaf
-          ./jaf --install          # Install adidnsdump and its dependencies
+          sudo ./jaf --install          # Install adidnsdump and its dependencies
           pip install -e .
           # Install PyInstaller
           pip install pyinstaller
