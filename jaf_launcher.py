@@ -1,6 +1,7 @@
 import sys
-from jaf import main
+from libs.JAF import JAF
 
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(JAF())
+   sys.exit(main())
 
