@@ -27,9 +27,6 @@ jobs:
           # Use this entry script for PyInstaller
           pyinstaller --onefile --name jaf_debian_amd64.exe jaf_launcher.py
                     
-      - name: Create zip file
-        run: |
-          Compress-Archive -Path .\\dist\\jaf_debian_amd64.exe -DestinationPath jaf_debian.zip 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
