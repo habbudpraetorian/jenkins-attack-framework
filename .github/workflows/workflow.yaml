@@ -17,7 +17,6 @@ jobs:
         run: |
           chmod +x jaf
           sudo ./jaf --install          # Install adidnsdump and its dependencies
-          pip install -e .
           # Install PyInstaller
           pip install pyinstaller
           
